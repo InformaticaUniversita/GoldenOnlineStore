@@ -4,8 +4,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe UtenteDAO fornisce metodi per interagire con il database
+ * per le operazioni relative agli oggetti Utente.
+ * E' responsabile della persistenza e del recupero dei dati degli utenti.
+ *
+ * Gli oggetti di questo classe dovrebbero essere utilizzati per accedere e manipolare
+ * le informazioni degli utenti nel database.
+ *
+ * La classe utilizza la connessione al database fornita da ConnectionPool per
+ * garantire una gestione corretta delle risorse e delle eccezioni SQL.
+ */
 public class UtenteDAO {
 
+    /**
+     * Metodo che recupera un utente dal database basato sull'username specificato.
+     *
+     * @param username l'username dell'utente da recuperare.
+     * @return Un oggetto Utente rappresentante l'utente corrispondente all'username specificato, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public Utente doRetrieveByUsername(String username){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome FROM cliente WHERE username =?");
@@ -26,6 +44,12 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Metodo che salva un nuovo utente nel database.
+     *
+     * @param utente L'oggetto Utente da salvare nel database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
+     */
     public void doSave(Utente utente){
         try(Connection c = ConnectionPool.getConnection()){
 
@@ -43,6 +67,15 @@ public class UtenteDAO {
         }
     }
 
+
+    /**
+     * Metodo che recupera un elenco di utenti dal database con un limite inferiore e superiore.
+     *
+     * @param offset Il numero minimo di utenti da recuperare.
+     * @param limit Il numero massimo di utenti da recuperare.
+     * @return Una lista di oggetti Utente rappresentanti gli utenti recuperati dal database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public List<Utente> doRetrieveAll(int offset, int limit){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome FROM cliente LIMIT ?,?  ");
@@ -66,6 +99,14 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Recupera un utente dal database basato sul nome utente e sulla password specificati.
+     *
+     * @param username Il nome utente dell'utente da recuperare.
+     * @param password La password dell'utente da recuperare.
+     * @return Un oggetto Utente rappresentante l'utente corrispondente al nome utente e alla password specificati, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public Utente doRetrieveByUsernamePassword(String username, String password){
         try(Connection con= ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement(
