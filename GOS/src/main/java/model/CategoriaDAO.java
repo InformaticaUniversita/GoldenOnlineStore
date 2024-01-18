@@ -7,6 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * La classe CategoriaDAO fornisce metodi per interagire con il database
+ * per le operazioni relative agli oggetti Categoria.
+ * E' responsabile della persistenza e del recupero dei dati delle categorie.
+ *
+ * Gli oggetti di questo classe dovrebbero essere utilizzati per accedere e manipolare
+ * le informazioni delle categorie nel database.
+ *
+ * La classe utilizza la connessione al database fornita da ConnectionPool per
+ * garantire una gestione corretta delle risorse e delle eccezioni SQL.
+ */
 public class CategoriaDAO {
     public List<Categoria> doRetrieveByMacro(String macro){
         try(Connection con = ConnectionPool.getConnection()){
@@ -26,6 +38,13 @@ public class CategoriaDAO {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Metodo che recupera tutte le categorie presenti nel database.
+     *
+     * @return Una lista di oggetti Categoria rappresentanti tutte le categorie.
+     * @throws RuntimeException Se si verifica un'eccezione SQL durante l'operazione di recupero.
+     */
     public List<Categoria> doRetrieveAll(){
         try(Connection con = ConnectionPool.getConnection()) {
             PreparedStatement ps= con.prepareStatement("SELECT id, nome, descrizione FROM categoria");
@@ -43,6 +62,13 @@ public class CategoriaDAO {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Metodo che recupera una categoria dal database basata sull'ID specificato.
+     *
+     * @param id L'identificatore univoco della categoria da recuperare.
+     * @return Un oggetto Categoria rappresentante la categoria corrispondente all'ID, o null se non trovata.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public Categoria doRetrieveById(int id){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps= con.prepareStatement("SELECT id,nome,descrizione FROM categoria WHERE id=?");
@@ -61,6 +87,12 @@ public class CategoriaDAO {
             throw new RuntimeException();
         }
     }
+    /**
+     * Metodo che salva una nuova categoria nel database.
+     *
+     * @param categoria L'oggetto Categoria da salvare nel database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
+     */
     public void doSave(Categoria categoria){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("INSERT INTO categoria(nome, descrizione) VALUES (?,?)");
@@ -73,6 +105,12 @@ public class CategoriaDAO {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Metodo che aggiorna una categoria esistente nel database.
+     *
+     * @param categoria L'oggetto Categoria con le nuove informazioni da aggiornare nel database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di aggiornamento.
+     */
     public void doUpdate(Categoria categoria){
         try (Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("UPDATE categoria SET nome=?, descrizione=? WHERE id=?");
@@ -86,6 +124,13 @@ public class CategoriaDAO {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Metodo che elimina una categoria dal database basata sull'ID specificato.
+     *
+     * @param id L'identificatore univoco della categoria da eliminare dal database.
+     * @throws RuntimeException Se si verifica un'eccezione SQL durante l'operazione di eliminazione.
+     */
     public void doDelete(int id){
         try (Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("DELETE FROM categoria WHERE id=?");
