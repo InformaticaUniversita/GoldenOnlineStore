@@ -7,8 +7,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe AmministratoreDAO fornisce metodi per interagire con il database
+ * per le operazioni relative agli oggetti Amministratore.
+ * È responsabile della persistenza e del recupero dei dati degli amministratori.
+ *
+ * Gli oggetti di questa classe dovrebbero essere utilizzati per accedere e manipolare
+ * le informazioni degli amministratori nel database.
+ *
+ * La classe utilizza la connessione al database fornita da ConnectionPool per
+ * garantire una gestione corretta delle risorse e delle eccezioni SQL.
+ */
 public class AmministratoreDAO {
 
+    /**
+     * Recupera un oggetto Amministratore dal database utilizzando l'username come criterio di ricerca.
+     *
+     * @param username L'username dell'amministratore da cercare nel database.
+     * @return Un oggetto Amministratore corrispondente all'username fornito, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
     public Amministratore doRetrieveByUsername(String username){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome,  codicediaccesso FROM amministratore WHERE username =?");
@@ -30,6 +48,13 @@ public class AmministratoreDAO {
         }
     }
 
+    /**
+     * Recupera un oggetto Amministratore dal database utilizzando il codice di accesso come criterio di ricerca.
+     *
+     * @param codice Il codice di accesso dell'amministratore da cercare nel database.
+     * @return Un oggetto Amministratore corrispondente al codice di accesso fornito, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
     public Amministratore doRetrieveByCodice(String codice){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username,email, password, nome, cognome,  codicediaccesso FROM amministratore WHERE codicediaccesso =?");
@@ -51,6 +76,14 @@ public class AmministratoreDAO {
         }
     }
 
+    /**
+     * Recupera una lista di amministratori dal database con con un limite inferiore e superiore.
+     *
+     * @param offset Il numero minimo di amministratori da recuperare.
+     * @param limit Il numero massimo di amministratori da recuperare.
+     * @return Una lista di amministratori recuperati dal database.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
     public List<Amministratore> doRetrieveAll(int offset, int limit){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome, codicediaccesso FROM amministratore LIMIT ?,?  ");
@@ -75,6 +108,15 @@ public class AmministratoreDAO {
         }
     }
 
+    /**
+     * Recupera un oggetto Amministratore dal database utilizzando username, password e codice di accesso come criteri di ricerca.
+     *
+     * @param username L'username dell'amministratore da cercare nel database.
+     * @param password La password dell'amministratore da cercare nel database.
+     * @param code Il codice di accesso dell'amministratore da cercare nel database.
+     * @return Un oggetto Amministratore corrispondente agli input forniti, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
     public Amministratore doRetrieveByUsernamePasswordCode(String username, String password, String code){
         try(Connection con= ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement(
