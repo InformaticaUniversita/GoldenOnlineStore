@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * La classe ProdottoDAO fornisce metodi per interagire con il database
- * per le operazioni relative agli oggetti Prodotto.
+ * per le operazioni relative agli oggetti prodotto.
  * E' responsabile della persistenza e del recupero dei dati dei prodotti.
  *
  * Gli oggetti di questo classe dovrebbero essere utilizzati per accedere e manipolare
@@ -18,6 +18,11 @@ import java.util.List;
  */
 
 public class ProdottoDAO {
+
+
+    /**
+     * Enumerazione che rappresenta le opzioni di ordinamento per le query.
+     */
     public enum OrderBy{
         DEFAULT(""), PREZZO_ASC("ORDER BY prezzo ASC"), PREZZO_DESC("ORDER BY prezzo DESC");
         public final String sql;
@@ -28,11 +33,11 @@ public class ProdottoDAO {
     }
 
     /**
-     * Recupera una lista di prodotti dal database con un limite inferiore e superiore.
+     * Metodo che recupera una lista di prodotti dal database con un indice di partenza e un numero massimo di prodotti da recuperare.
      *
-     * @param offset Il numero minimo di prodotti da recuperare.
-     * @param limit Numero massimo di prodotti da recuperare.
-     * @return Una lista di oggetti Prodotto che rappresentano i prodotti nel database.
+     * @param offset L'indice di partenza dei prodotti.
+     * @param limit Il numero massimo di prodotti da recuperare.
+     * @return Una lista di prodotti che rappresentano i prodotti nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
     public List<Prodotto>doRetrieveAll(int offset,int limit) {
@@ -58,10 +63,10 @@ public class ProdottoDAO {
         }
     }
     /**
-     * Recupera un singolo prodotto dal database identificato dal suo ID.
+     * Metodo che recupera un singolo prodotto dal database identificato dal suo id.
      *
-     * @param id L'identificativo univoco del prodotto da recuperare.
-     * @return Un oggetto Prodotto che rappresenta il prodotto nel database con l'ID specificato,o null se non trovato.
+     * @param id L'id univoco del prodotto da recuperare.
+     * @return Un prodotto con l'id specificato, o null se non trovato.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
     public Prodotto doRetrieveById(int id){
@@ -84,13 +89,13 @@ public class ProdottoDAO {
         }
     }
     /**
-     * Recupera una lista di prodotti dal database che corrispondono a un dato nome, utilizzando la ricerca full-text.
-     * Limita il numero di risultati restituiti e utilizza offset e limit per la paginazione.
+     * Metodo che recupera una lista di prodotti dal database con un indice di partenza e un
+     * numero massimo di prodotti da recuperare utilizzando il nome come criterio di ricerca.
      *
-     * @param nome Il termine di ricerca per il nome dei prodotti.
-     * @param offset Il numero minimo di prodotti da recuperare.
+     * @param nome Il nome dei prodotti da ricercare.
+     * @param offset L'indice di partenza dei prodotti da recuperare.
      * @param limit Il numero massimo di prodotti da recuperare.
-     * @return Una lista di oggetti Prodotto che corrispondono al nome cercato nel database.
+     * @return Una lista di prodotti che corrispondono al nome cercato nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
     public List<Prodotto> doRetrieveByNome(String nome,int offset,int limit) {
@@ -117,9 +122,9 @@ public class ProdottoDAO {
     }
 
     /**
-     * Conta il numero totale di prodotti associati a una categoria specifica nel database.
+     * Metodo che conta il numero totale di prodotti associati a una categoria specifica nel database.
      *
-     * @param categoria L'identificativo univoco della categoria di prodotti.
+     * @param categoria L'id univoco della categoria di prodotti da contare.
      * @return Il numero totale di prodotti associati alla categoria specificata.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
@@ -137,13 +142,13 @@ public class ProdottoDAO {
     }
 
     /**
-     * Recupera una lista di prodotti dal database che corrispondono a una data descrizione, utilizzando la ricerca.
-     * Limita il numero di risultati restituiti e utilizza offset e limit per la paginazione.
+     * Metodo che recupera una lista di prodotti dal database con un indice di partenza e un numero massimo
+     * di prodotti da recuperare utilizzando la descrizione come criterio di ricerca.
      *
-     * @param descrizione Il termine di ricerca per la descrizione dei prodotti.
-     * @param offset Il numero minimo di prodotti da recuperare.
+     * @param descrizione La descrizione dei prodotti da recuperare.
+     * @param offset L'indice di partenza dei prodotti da recuperare.
      * @param limit Il numero massimo di prodotti da recuperare.
-     * @return Una lista di oggetti Prodotto che corrispondono alla descrizione cercata nel database.
+     * @return Una lista di prodotti che corrispondono alla descrizione cercata nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
     public List<Prodotto> doRetrieveByDescrizione(String descrizione,int offset,int limit) {
@@ -169,14 +174,14 @@ public class ProdottoDAO {
         }
     }
     /**
-     * Recupera una lista di prodotti dal database che appartengono a una categoria specifica,
-     * ordinati secondo un criterio specificato.
+     * Metodo che recupera una lista di prodotti dal database che appartengono a una categoria specifica,
+     * ordinati secondo un criterio specificato, un indice di partenza e un numero massimo di prodotti da recuperare.
      *
-     * @param categoria Identificatore della categoria dei prodotti da recuperare.
+     * @param categoria L'id della categoria dei prodotti da recuperare.
      * @param orderBy Criterio di ordinamento per i risultati della query.
-     * @param offset Il numero minimo di prodotti da recuperare.
+     * @param offset L'indice di partenza dei prodotti da recuperare.
      * @param limit Il numero massimo di prodotti da recuperare.
-     * @return Una lista di oggetti Prodotto che appartengono alla categoria specificata, ordinati secondo il criterio specificato.
+     * @return Una lista di prodotti che appartengono alla categoria specificata, ordinati secondo il criterio specificato.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'esecuzione della query.
      */
     public List<Prodotto> doRetrieveByCategoria(int categoria, OrderBy orderBy, int offset, int limit) {
@@ -204,10 +209,10 @@ public class ProdottoDAO {
 
 
     /**
-     * Salva un nuovo prodotto nel database con le informazioni specificate.
+     * Metodo che salva un nuovo prodotto nel database con le informazioni specificate.
      *
-     * @param prodotto Oggetto Prodotto da salvare nel database.
-     * @param idCategoria Identificatore della categoria a cui appartiene il prodotto.
+     * @param prodotto Il prodotto da salvare nel database.
+     * @param idCategoria L'id della categoria a cui appartiene il prodotto.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'inserimento del prodotto nel database.
      */
     public void doSave(Prodotto prodotto, int idCategoria){
@@ -228,10 +233,10 @@ public class ProdottoDAO {
     }
 
     /**
-     * Aggiorna le informazioni di un prodotto esistente nel database con i nuovi valori specificati.
+     * Metodo che aggiorna le informazioni di un prodotto esistente nel database con i nuovi valori specificati.
      *
-     * @param prodotto Oggetto Prodotto con le nuove informazioni.
-     * @param idCategoria Identificatore della nuova categoria a cui appartiene il prodotto.
+     * @param prodotto Il prodotto con le nuove informazioni.
+     * @param idCategoria L'id della nuova categoria a cui appartiene il prodotto.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'aggiornamento delle informazioni del prodotto nel database.
      */
     public void doUpdate(Prodotto prodotto,int idCategoria){
@@ -252,10 +257,10 @@ public class ProdottoDAO {
     }
 
     /**
-     * Elimina un prodotto dal database utilizzando l'identificatore specificato.
+     * Metodo che elimina un prodotto dal database utilizzando l'id specificato.
      *
-     * @param id Identificatore del prodotto da eliminare.
-     * @throws RuntimeException Se si verifica un'eccezione SQL durante l'eliminazione del prodotto dal database.
+     * @param id L'id del prodotto da eliminare.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'eliminazione del prodotto dal database.
      */
     public void doDelete(String id){
         try(Connection con = ConnectionPool.getConnection()){

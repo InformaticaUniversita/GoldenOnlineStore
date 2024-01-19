@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  * La classe IndirizzoDAO fornisce metodi per interagire con il database
- * per le operazioni relative agli oggetti Indirizzo.
+ * per le operazioni relative agli oggetti indirizzo.
  * È responsabile della persistenza dei dati degli indirizzi.
  *
  * Gli oggetti di questa classe dovrebbero essere utilizzati per manipolare
@@ -18,9 +18,9 @@ import java.sql.SQLException;
 public class IndirizzoDAO {
 
     /**
-     * Salva un nuovo indirizzo di spedizione nel database.
+     * Metodo che salva un nuovo indirizzo di spedizione nel database.
      *
-     * @param indirizzo L'oggetto Indirizzo da salvare nel database.
+     * @param indirizzo L'oggetto indirizzo da salvare nel database.
      * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
      */
     public void doSave(Indirizzo indirizzo){

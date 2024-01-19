@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * La classe UtenteDAO fornisce metodi per interagire con il database
- * per le operazioni relative agli oggetti Utente.
+ * per le operazioni relative agli oggetti utente.
  * E' responsabile della persistenza e del recupero dei dati degli utenti.
  *
  * Gli oggetti di questo classe dovrebbero essere utilizzati per accedere e manipolare
@@ -20,8 +20,8 @@ public class UtenteDAO {
     /**
      * Metodo che recupera un utente dal database basato sull'username specificato.
      *
-     * @param username l'username dell'utente da recuperare.
-     * @return Un oggetto Utente rappresentante l'utente corrispondente all'username specificato, o null se non trovato.
+     * @param username L'username dell'utente da recuperare.
+     * @return Un utente corrispondente all'username specificato, o null se non trovato.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public Utente doRetrieveByUsername(String username){
@@ -47,7 +47,7 @@ public class UtenteDAO {
     /**
      * Metodo che salva un nuovo utente nel database.
      *
-     * @param utente L'oggetto Utente da salvare nel database.
+     * @param utente L'utente da salvare nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
      */
     public void doSave(Utente utente){
@@ -69,11 +69,12 @@ public class UtenteDAO {
 
 
     /**
-     * Metodo che recupera un elenco di utenti dal database con un limite inferiore e superiore.
+     * Metodo che recupera un elenco di utenti dal database con un indice di partenza e un numero massimo
+     * di utenti da recuperare.
      *
-     * @param offset Il numero minimo di utenti da recuperare.
+     * @param offset L'indice di partenza di utenti da recuperare.
      * @param limit Il numero massimo di utenti da recuperare.
-     * @return Una lista di oggetti Utente rappresentanti gli utenti recuperati dal database.
+     * @return Una lista di utenti recuperati dal database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public List<Utente> doRetrieveAll(int offset, int limit){
@@ -102,9 +103,9 @@ public class UtenteDAO {
     /**
      * Recupera un utente dal database basato sul nome utente e sulla password specificati.
      *
-     * @param username Il nome utente dell'utente da recuperare.
+     * @param username L'username dell'utente da recuperare.
      * @param password La password dell'utente da recuperare.
-     * @return Un oggetto Utente rappresentante l'utente corrispondente al nome utente e alla password specificati, o null se non trovato.
+     * @return Un utente corrispondente allo username e alla password specificati, o null se non trovato.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public Utente doRetrieveByUsernamePassword(String username, String password){

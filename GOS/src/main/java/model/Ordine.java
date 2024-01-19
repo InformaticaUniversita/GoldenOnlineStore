@@ -5,7 +5,7 @@ import java.sql.Date;
 /**
  * La classe Ordine rappresenta un oggetto ordine con informazioni come id, cliente
  * data ordine, data spedizione e prezzo totale.
- * Ogni oggetto Ordine può essere identificato da un codice univoco.
+ * Ogni oggetto ordine può essere identificato da un codice univoco.
  */
 public class Ordine {
     int id;
@@ -16,7 +16,7 @@ public class Ordine {
     float prezzoTotale;
 
     /**
-     * Questo costruttore permette di creare un nuovo oggetto Ordine inizializzando
+     * Questo costruttore permette di creare un nuovo oggetto ordine inizializzando
      * i suoi attributi con i valori specificati.
      * @param cliente L'username del cliente che effettua l'ordine.
      * @param dataOrdine La data in cui è effettuato l'ordine.
@@ -31,8 +31,8 @@ public class Ordine {
     }
 
     /**
-     * Costruttore vuoto per un oggetto Ordine.
-     * Viene utilizzato per creare un'istanza di Ordine senza specificare
+     * Costruttore vuoto per un oggetto ordine.
+     * Viene utilizzato per creare un'istanza di ordine senza specificare
      * valori iniziali.
      */
     public Ordine() {
@@ -46,7 +46,7 @@ public class Ordine {
 
     /**
      * Metodo per modificare l'username del cliente che ha effettuato l'ordine.
-     * @param cliente  L'username del cliente che ha effettuato l'ordine.
+     * @param cliente L'username del cliente che ha effettuato l'ordine.
      */
     public void setCliente(String cliente){this.cliente= cliente; }
 
@@ -60,7 +60,7 @@ public class Ordine {
 
     /**
      * Metodo per modificare la data in cui è stato effettuato l'ordine.
-     * @param dataOrdine  La data in cui è stato effettuato l'ordine.
+     * @param dataOrdine La data in cui è stato effettuato l'ordine.
      */
     public void setDataOrdine(Date dataOrdine) {
         this.dataOrdine = dataOrdine;
@@ -76,7 +76,7 @@ public class Ordine {
 
     /**
      * Metodo per modificare la data in cui è stato spedito l'ordine.
-     * @param dataSpedizione  La data in cui è stato spedito l'ordine.
+     * @param dataSpedizione La data in cui è stato spedito l'ordine.
      */
     public void setDataSpedizione(Date dataSpedizione) {
         this.dataSpedizione = dataSpedizione;

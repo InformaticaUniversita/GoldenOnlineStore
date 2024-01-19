@@ -20,6 +20,14 @@ import java.util.List;
  * garantire una gestione corretta delle risorse e delle eccezioni SQL.
  */
 public class CategoriaDAO {
+
+    /**
+     * Metodo che recupera una lista di categorie dal database in base a una macrocategoria specifica.
+     *
+     * @param macro La macrocategoria utilizzata come criterio di ricerca per le categorie.
+     * @return Una lista di categorie corrispondenti alla macrocategoria fornita.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
     public List<Categoria> doRetrieveByMacro(String macro){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT id, nome, descrizione FROM categoria WHERE macrocategoria=?");
@@ -42,8 +50,8 @@ public class CategoriaDAO {
     /**
      * Metodo che recupera tutte le categorie presenti nel database.
      *
-     * @return Una lista di oggetti Categoria rappresentanti tutte le categorie.
-     * @throws RuntimeException Se si verifica un'eccezione SQL durante l'operazione di recupero.
+     * @return Tutte le categorie presenti nel database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public List<Categoria> doRetrieveAll(){
         try(Connection con = ConnectionPool.getConnection()) {
@@ -63,10 +71,10 @@ public class CategoriaDAO {
         }
     }
     /**
-     * Metodo che recupera una categoria dal database basata sull'ID specificato.
+     * Metodo che recupera una categoria dal database basata sull'id specificato.
      *
-     * @param id L'identificatore univoco della categoria da recuperare.
-     * @return Un oggetto Categoria rappresentante la categoria corrispondente all'ID, o null se non trovata.
+     * @param id L'id univoco della categoria da recuperare.
+     * @return Una categoria corrispondente all'id, o null se non trovata.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public Categoria doRetrieveById(int id){
@@ -90,7 +98,7 @@ public class CategoriaDAO {
     /**
      * Metodo che salva una nuova categoria nel database.
      *
-     * @param categoria L'oggetto Categoria da salvare nel database.
+     * @param categoria L'oggetto categoria da salvare nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
      */
     public void doSave(Categoria categoria){
@@ -108,7 +116,7 @@ public class CategoriaDAO {
     /**
      * Metodo che aggiorna una categoria esistente nel database.
      *
-     * @param categoria L'oggetto Categoria con le nuove informazioni da aggiornare nel database.
+     * @param categoria L'oggetto categoria con le nuove informazioni da aggiornare nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di aggiornamento.
      */
     public void doUpdate(Categoria categoria){
@@ -126,10 +134,10 @@ public class CategoriaDAO {
     }
 
     /**
-     * Metodo che elimina una categoria dal database basata sull'ID specificato.
+     * Metodo che elimina una categoria dal database basata sull'id specificato.
      *
-     * @param id L'identificatore univoco della categoria da eliminare dal database.
-     * @throws RuntimeException Se si verifica un'eccezione SQL durante l'operazione di eliminazione.
+     * @param id L'id univoco della categoria da eliminare dal database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di eliminazione.
      */
     public void doDelete(int id){
         try (Connection con = ConnectionPool.getConnection()){

@@ -1,7 +1,7 @@
 package model;
 
 /**
- * la classe LineaOrdine rappresenta un oggetto linea d'ordine con informazioni come
+ * La classe LineaOrdine rappresenta un oggetto linea d'ordine con informazioni come
  * id dell'ordine, id del prodotto, quantità del prodotto e prezzo totale.
  */
 public class LineaOrdine {
@@ -18,14 +18,14 @@ public class LineaOrdine {
     public LineaOrdine() {
     }
 
-    /**identificativo
-     * Questo metodo permette di creare una nuova istanza di LineaOrdine
+    /**
+     * Questo costruttore permette di creare una nuova istanza di LineaOrdine
      * inizializzando i suoi attributi con i valori specificati.
      *
-     * @param idOrdine L'identificatore univoco dell'ordine associato alla linea di ordine.
-     * @param idProdotto L'identificativo univoco del prodotto associato alla linea di ordine.
-     * @param quantità La quantità di un prodotto nella linea di ordine.
-     * @param prezzoUnitario Il prezzo totale del prodotto nella linea di ordine.
+     * @param idOrdine L'id univoco dell'ordine associato alla linea d'ordine.
+     * @param idProdotto L'id univoco del prodotto associato alla linea d'ordine.
+     * @param quantità La quantità di un prodotto nella linea d'ordine.
+     * @param prezzoUnitario Il prezzo totale del prodotto nella linea d'ordine.
      */
     public LineaOrdine(int idOrdine, int idProdotto, int quantità, float prezzoUnitario) {
         this.idOrdine = idOrdine;
@@ -35,64 +35,64 @@ public class LineaOrdine {
     }
 
     /**
-     * Metodo per restituire l'identificativo di un ordine.
-     * @return L'identificativo univoco di un ordine.
+     * Metodo per restituire l'id di un ordine.
+     * @return L'id di un ordine.
      */
     public int getIdOrdine() {
         return idOrdine;
     }
 
     /**
-     * Metodo per modificare l'identificativo di un ordine .
-     * @param idOrdine L'identificativo dell'ordine.
+     * Metodo per modificare l'id di un ordine .
+     * @param idOrdine L'id dell'ordine.
      */
     public void setIdOrdine(int idOrdine) {
         this.idOrdine = idOrdine;
     }
 
     /**
-     * Metodo per restituire l'identificativo di un prodotto.
-     * @return L'identificativo univoco di un prodotto.
+     * Metodo per restituire l'id di un prodotto di una linea d'ordine.
+     * @return L'id di un prodotto di una linea d'ordine.
      */
     public int getIdProdotto() {
         return idProdotto;
     }
 
     /**
-     * Metodo per modificare l'identificativo di prodotto .
-     * @param idProdotto L'identificativo dell'ordine.
+     * Metodo per modificare l'id di prodotto di una linea d'ordine.
+     * @param idProdotto L'id dell'ordine di una linea d'ordine.
      */
     public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
     }
 
     /**
-     * Metodo per restituire la quantità di un prodotto.
-     * @return La quantità di un prodotto.
+     * Metodo per restituire la quantità di un prodotto di una linea d'ordine.
+     * @return La quantità di un prodotto di una linea d'ordine.
      */
     public int getQuantità() {
         return quantità;
     }
 
     /**
-     * Metodo per modificare la quantità di prodotto .
-     * @param quantità La quantità di un prodotto.
+     * Metodo per modificare la quantità di prodotto di una linea d'ordine.
+     * @param quantità La quantità di un prodotto di una linea d'ordine.
      */
     public void setQuantità(int quantità) {
         this.quantità = quantità;
     }
 
     /**
-     * Metodo per restituire il prezzo totale di una linea.
-     * @return il prezzo totale di una linea.
+     * Metodo per restituire il prezzo totale di una linea d'ordine.
+     * @return Il prezzo totale di una linea d'ordine.
      */
     public float getPrezzoUnitario() {
         return prezzoUnitario;
     }
 
     /**
-     * Metodo per modificare il prezzo totale della linea .
-     * @param  prezzoUnitario il prezzo totale della linea.
+     * Metodo per modificare il prezzo totale di una linea d'ordine.
+     * @param  prezzoUnitario Il prezzo totale di una linea d'ordine.
      */
     public void setPrezzoUnitario(float prezzoUnitario) {
         this.prezzoUnitario = prezzoUnitario;

@@ -22,8 +22,8 @@ public class LineaOrdineDAO {
     /**
      * Metodo che recupera le linee d'ordine associate ad un ordine specifico dal database.
      *
-     * @param ordine L'identificatore univoco dell'ordine associato alle linee di ordine da recuperare.
-     * @return Una lista di oggetti LineaOrdine rappresentanti le linee d'ordine associate all'ordine specificato.
+     * @param ordine L'id univoco dell'ordine associato alle linee d'ordine da recuperare.
+     * @return Una lista di linee d'ordine associate all'ordine specificato.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
      */
     public List<LineaOrdine> doRetrieveByOrdine(int ordine){
@@ -47,18 +47,18 @@ public class LineaOrdineDAO {
     }
 
     /**
-     * Metodo che salva una nuova linea di ordine nel database.
+     * Metodo che salva una nuova linea d'ordine nel database.
      *
-     * @param l L'oggetto LineaOrdine da salvare nel database.
+     * @param lineaOrdine L'oggetto LineaOrdine da salvare nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
      */
-    public void doSave(LineaOrdine l){
+    public void doSave(LineaOrdine lineaOrdine){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("INSERT INTO lineadordine(lineadordine.ordine, lineadordine.prodotto, lineadordine.quantità, lineadordine.prezzounitario) VALUES (?,?,?,?)");
-            ps.setInt(1,l.getIdOrdine());
-            ps.setInt(2,l.getIdProdotto());
-            ps.setInt(3,l.getQuantità());
-            ps.setFloat(4,l.getPrezzoUnitario());
+            ps.setInt(1,lineaOrdine.getIdOrdine());
+            ps.setInt(2,lineaOrdine.getIdProdotto());
+            ps.setInt(3,lineaOrdine.getQuantità());
+            ps.setFloat(4,lineaOrdine.getPrezzoUnitario());
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("INSERT error");
             }

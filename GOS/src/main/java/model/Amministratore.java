@@ -1,9 +1,9 @@
 package model;
 
 /**
- * La classe Amministratore rappresenta un oggetto amministratore con informazioni come username,
+ * La classe amministratore rappresenta un oggetto amministratore con informazioni come username,
  * email, password, nome, cognome e codice.
- * Ogni oggetto Amministratore può essere identificato da un codice univoco.
+ * Ogni oggetto amministratore può essere identificato da un codice univoco.
  */
 public class Amministratore {
     private String username;
@@ -11,19 +11,19 @@ public class Amministratore {
     private String password;
     private String nome;
     private String cognome;
-    private String codice;
+    private int codice;
 
     /**
-     * Questo costruttore permette di creare un nuovo oggetto Amministratore inizializzando
+     * Questo costruttore permette di creare un nuovo oggetto amministratore inizializzando
      * i suoi attributi con i valori specificati.
-     * @param username L'username dell'Amministratore.
-     * @param email L'email dell'Amministratore.
-     * @param password La password dell'Amministratore.
-     * @param nome Il nome dell'Amministratore.
-     * @param cognome Il cognome dell'Amministratore.
-     * @param codice Il codice dell'Amministratore.
+     * @param username L'username dell'amministratore.
+     * @param email L'email dell'amministratore.
+     * @param password La password dell'amministratore.
+     * @param nome Il nome dell'amministratore.
+     * @param cognome Il cognome dell'amministratore.
+     * @param codice Il codice dell'amministratore.
      */
-    public Amministratore(String username, String email, String password, String nome, String cognome, String codice) {
+    public Amministratore(String username, String email, String password, String nome, String cognome, int codice) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -33,105 +33,105 @@ public class Amministratore {
     }
 
     /**
-     * Costruttore vuoto per un oggetto Amministratore.
-     * Viene utilizzato per creare un'istanza di Amministratore senza specificare
+     * Costruttore vuoto per un oggetto amministratore.
+     * Viene utilizzato per creare un'istanza di amministratore senza specificare
      * valori iniziali.
      */
     public Amministratore() { }
 
     /**
-     * Metodo per restituire l'username dell'Amministratore.
-     * @return L'username dell'Amministratore.
+     * Metodo per restituire l'username dell'amministratore.
+     * @return L'username dell'amministratore.
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Metodo per modificare l'username dell'Amministratore.
-     * @param username L'username da modificare.
+     * Metodo per modificare l'username dell'amministratore.
+     * @param username L'username dell'amministratore da modificare.
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Metodo per restituire l'email dell'Amministratore.
-     * @return L'email dell'Amministratore.
+     * Metodo per restituire l'email dell'amministratore.
+     * @return L'email dell'amministratore.
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Metodo per modificare l'email dell'Amministratore.
-     * @param email L'email dell'Amministratore.
+     * Metodo per modificare l'email dell'amministratore.
+     * @param email L'email dell'amministratore da modificare.
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Metodo per restituire la password dell'Amministratore.
-     * @return La password dell'Amminstratore.
+     * Metodo per restituire la password dell'amministratore.
+     * @return La password dell'amminstratore.
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * Metodo per modificare la password dell'Amministratore.
-     * @param password La password dell'Amministratore.
+     * Metodo per modificare la password dell'amministratore.
+     * @param password La password dell'amministratore da modificare.
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * Metodo per restituire il nome dell'Amministratore.
-     * @return Il nome dell'Amministratore.
+     * Metodo per restituire il nome dell'amministratore.
+     * @return Il nome dell'amministratore.
      */
     public String getNome() {
         return nome;
     }
 
     /**
-     * Metodo per modificare il nome dell'Amministratore.
-     * @param nome Il nome dell'Amministratore.
+     * Metodo per modificare il nome dell'amministratore.
+     * @param nome Il nome dell'amministratore da modificare.
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
-     * Metodo per restituire il cognome dell'Amministratore.
-     * @return Il cognome dell'Amministratore.
+     * Metodo per restituire il cognome dell'amministratore.
+     * @return Il cognome dell'amministratore.
      */
     public String getCognome() {
         return cognome;
     }
 
     /**
-     * Metodo per modificare il cognome dell'Amministratore.
-     * @param cognome Il cognome dell'Amministratore.
+     * Metodo per modificare il cognome dell'amministratore.
+     * @param cognome Il cognome dell'amministratore da modificare.
      */
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
 
     /**
-     * Metodo per restituire il codice dell'Amministratore.
-     * @return Il codice dell'Amministratore.
+     * Metodo per restituire il codice dell'amministratore.
+     * @return Il codice dell'amministratore.
      */
-    public String getCodice() {
+    public int getCodice() {
         return codice;
     }
 
     /**
-     * Metodo per modificare il codice dell'Amministratore.
-     * @param codice Il codice dell'Amminstratore.
+     * Metodo per modificare il codice dell'amministratore.
+     * @param codice Il codice dell'amminstratore da modificare.
      */
-    public void setCodice(String codice) {
+    public void setCodice(int codice) {
         this.codice = codice;
     }
 }

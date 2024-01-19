@@ -18,7 +18,7 @@ public class ConnectionPool {
     private static Connection newConnection;
 
     /**
-     * Ottiene una connessione dal pool.
+     * Metodo che ottiene una connessione dal pool.
      *
      * @return Una connessione al database.
      * @throws SQLException Se si verifica un'eccezione durante l'accesso al database.
