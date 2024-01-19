@@ -31,7 +31,7 @@ public class LoginAmministratoreServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String codice = request.getParameter("codice");
+        int codice = Integer.parseInt(request.getParameter("codice"));
         Amministratore amministratore = null;
         if(username != null && password != null){
             amministratore = amministratoreDAO.doRetrieveByUsernamePasswordCode(username,password,codice);

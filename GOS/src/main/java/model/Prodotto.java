@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * La classe Prodotto rappresenta un oggetto prodotto con informazioni come id,
  * nome, descrizione, prezzo, marca e categoria.
- * Ogni oggetto Prodotto può essere identificato da un codice univoco.
+ * Ogni oggetto prodotto può essere identificato da un codice univoco.
  */
 public class Prodotto {
     private int id;
@@ -17,13 +17,13 @@ public class Prodotto {
 
 
     /**
-     * Costruttore vuoto per un oggetto Prodotto.
-     * Viene utilizzato per creare un'istanza di Prodotto senza specificare
+     * Costruttore vuoto per un oggetto prodotto.
+     * Viene utilizzato per creare un'istanza di prodotto senza specificare
      * valori iniziali.
      */
     public Prodotto() { }
 
-    /** Questo costruttore permette di creare un nuovo oggetto Prodotto inizializzando
+    /** Questo costruttore permette di creare un nuovo oggetto prodotto inizializzando
      * i suoi attributi con i valori specificati.
      * @param id L'id del prodotto.
      * @param nome Il nome del prodotto.
@@ -42,7 +42,7 @@ public class Prodotto {
     }
 
     /**
-     * Metodo per restituire una stringa rappresentante l'oggetto Prodotto.
+     * Metodo per restituire una stringa rappresentante l'oggetto prodotto.
      * @return Una stringa che contiene id, nome, descrizione, prezzo, marca e categoria.
      */
     @Override
@@ -75,7 +75,7 @@ public class Prodotto {
 
 
     /**
-     * Metodo per restituire un valore hash per l'oggetto Prodotto.
+     * Metodo per restituire un valore hash per l'oggetto prodotto.
      * @return Un valore hash basato sull'id, nome, descrizione e prezzo.
      */
     @Override

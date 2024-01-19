@@ -43,7 +43,7 @@ public class Carrello {
 
         /**
          * Metodo per restituire il prodotto di una linea del carrello.
-         * @return Il prodotto di una linea.
+         * @return Il prodotto di una linea del carrello.
          */
         public Prodotto getProdotto() {
             return prodotto;
@@ -51,7 +51,7 @@ public class Carrello {
 
         /**
          * Metodo per modificare il prodotto di una linea del carrello.
-         * @param prodotto Il prodotto di una linea.
+         * @param prodotto Il prodotto di una linea del carrello.
          */
         public void setProdotto(Prodotto prodotto) {
             this.prodotto = prodotto;
@@ -59,7 +59,7 @@ public class Carrello {
 
         /**
          * Metodo per restituire la quantità di un prodotto di una linea del carrello.
-         * @return la quantità del prodotto.
+         * @return la quantità del prodotto di una linea del carrello.
          */
         public int getQuantità() {
             return quantità;
@@ -67,7 +67,7 @@ public class Carrello {
 
         /**
          * Metodo per modificare la quantità di un prodotto di una linea del carrello.
-         * @param quantità La quantità del prodotto.
+         * @param quantità La quantità del prodotto di una linea del carrello.
          */
         public void setQuantità(int quantità) {
             this.quantità = quantità;
@@ -103,8 +103,8 @@ public class Carrello {
 
     /**
      * Metodo per restituire un prodotto ricercato tramite id.
-     * @param prodId Identificativo del prodotto.
-     * @return Il prodotto e la corrispettiva quantitò.
+     * @param prodId L'id del prodotto.
+     * @return Il prodotto e la corrispettiva quantità.
      */
     public ProdottoQuantità get(int prodId){
         return prodotti.get(prodId);
@@ -121,7 +121,7 @@ public class Carrello {
 
     /**
      * Metodo per rimuovere un prodotto ricercato tramite id.
-     * @param prodId Identificativo del prodotto.
+     * @param prodId L'id del prodotto.
      * @return Il prodotto rimosso e la corrispettiva quantità.
      */
     public ProdottoQuantità remove(int prodId) {
@@ -129,7 +129,7 @@ public class Carrello {
     }
 
     /**
-     * Metodo per ottenere il prezzo totale di tutti i prodotti deel carrello.
+     * Metodo per ottenere il prezzo totale di tutti i prodotti del carrello.
      * @return il prezzo totale di tutti i prodotti.
      */
     public float getPrezzoTot(){
