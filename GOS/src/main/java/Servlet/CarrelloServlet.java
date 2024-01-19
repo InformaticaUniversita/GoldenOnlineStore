@@ -32,7 +32,7 @@ public class CarrelloServlet extends HttpServlet {
             if (addNumStr!=null){
                 int addNum=Integer.parseInt(addNumStr);
 
-                Carrello.ProdottoQuantità prodQuantità = carrello.get(prodId);
+                Carrello.IstanzaProdotto prodQuantità = carrello.get(prodId);
                 if(prodQuantità!=null) {
                     prodQuantità.setQuantità(prodQuantità.getQuantità()+ addNum);
                 }else{
@@ -45,7 +45,7 @@ public class CarrelloServlet extends HttpServlet {
                     if(setNum <= 0){
                         carrello.remove(prodId);
                     }else {
-                        Carrello.ProdottoQuantità prodQuant= carrello.get(prodId);
+                        Carrello.IstanzaProdotto prodQuant= carrello.get(prodId);
                         if(prodQuant != null){
                             prodQuant.setQuantità(setNum);
                         }else{
