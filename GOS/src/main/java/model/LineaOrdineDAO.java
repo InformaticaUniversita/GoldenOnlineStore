@@ -7,7 +7,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe LineaOrdineDAO fornisce metodi per interagire con il database
+ * per le operazioni relative agli oggetti LineaOrdine.
+ * E' responsabile della persistenza e del recupero dei dati delle linee d'ordine.
+ *
+ * Gli oggetti di questo classe dovrebbero essere utilizzati per accedere e manipolare
+ * le informazioni  delle linee d'ordine nel database.
+ *
+ * La classe utilizza la connessione al database fornita da ConnectionPool per
+ * garantire una gestione corretta delle risorse e delle eccezioni SQL.
+ */
 public class LineaOrdineDAO {
+    /**
+     * Metodo che recupera le linee d'ordine associate ad un ordine specifico dal database.
+     *
+     * @param ordine L'identificatore univoco dell'ordine associato alle linee di ordine da recuperare.
+     * @return Una lista di oggetti LineaOrdine rappresentanti le linee d'ordine associate all'ordine specificato.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public List<LineaOrdine> doRetrieveByOrdine(int ordine){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT lineadordine.prodotto, lineadordine.quantità, lineadordine.prezzounitario FROM lineadordine WHERE lineadordine.ordine=?");
@@ -28,6 +46,12 @@ public class LineaOrdineDAO {
         }
     }
 
+    /**
+     * Metodo che salva una nuova linea di ordine nel database.
+     *
+     * @param l L'oggetto LineaOrdine da salvare nel database.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
+     */
     public void doSave(LineaOrdine l){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("INSERT INTO lineadordine(lineadordine.ordine, lineadordine.prodotto, lineadordine.quantità, lineadordine.prezzounitario) VALUES (?,?,?,?)");
