@@ -2,10 +2,10 @@ package model;
 
 /**
  * La classe Indirizzo rappresenta un oggetto indirizzo con informazioni come via, CAP e città.
- * Ogni oggetto indirizzo può essere identificato da un id univoco.
+ * Ogni oggetto indirizzo può essere identificato da un id univoco dell'ordine associato.
  */
 public class Indirizzo {
-    private int id;
+    private int idOrdine;
     private String via;
     private String cap;
     private String citta;
@@ -19,32 +19,32 @@ public class Indirizzo {
 
     /**
      * Costruttore per creare un oggetto indirizzo con valori iniziali specificati.
-     * @param id L'id univoco dell'indirizzo.
+     * @param idOrdine L'id dell'ordine associato.
      * @param via La via dell'indirizzo.
      * @param cap Il codice di avviamento postale (CAP) dell'indirizzo.
      * @param citta La città dell'indirizzo.
      */
-    public Indirizzo(int id, String via, String cap, String citta) {
-        this.id = id;
+    public Indirizzo(int idOrdine, String via, String cap, String citta) {
+        this.idOrdine = idOrdine;
         this.via = via;
         this.cap = cap;
         this.citta = citta;
     }
 
     /**
-     * Metodo per restituire l'id dell'indirizzo.
-     * @return L'id dell'indirizzo.
+     * Metodo per restituire l'id dell'ordine associato.
+     * @return L'id dell'ordine associato.
      */
     public int getId() {
-        return id;
+        return idOrdine;
     }
 
     /**
-     * Metodo per modificare l'id dell'indirizzo.
-     * @param id L'id dell'indirizzo.
+     * Metodo per modificare l'id dell'ordine associato.
+     * @param idOrdine L'id dell'ordine associato.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idOrdine) {
+        this.idOrdine = idOrdine;
     }
 
     /**

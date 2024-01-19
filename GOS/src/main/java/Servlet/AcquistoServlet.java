@@ -121,10 +121,9 @@ public class AcquistoServlet extends HttpServlet {
         IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
         indirizzoDAO.doSave(indirizzo1);
         LineaOrdine l = new LineaOrdine();
-        List<Carrello.ProdottoQuantità> pq = carrello.getProdottiArray();
+        List<Carrello.IstanzaProdotto> pq = carrello.getProdottiArray();
         LineaOrdineDAO lineaOrdineDAO = new LineaOrdineDAO();
-        for(Carrello.ProdottoQuantità p:pq){
-            System.out.println(id);
+        for(Carrello.IstanzaProdotto p:pq){
             l.setIdOrdine(id);
             l.setIdProdotto(p.getProdotto().getId());
             l.setQuantità(p.getQuantità());
