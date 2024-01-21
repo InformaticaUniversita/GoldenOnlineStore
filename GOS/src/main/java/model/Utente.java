@@ -21,7 +21,7 @@ public class Utente {
     public Utente() { }
 
     /**
-     * Questo metodo permette di creare una nuova istanza di Utente
+     * Questo costruttore permette di creare una nuova istanza di Utente
      * inizializzando i suoi attributi con i valori specificati.
      *
      * @param username L'username dell'account
@@ -62,7 +62,7 @@ public class Utente {
     }
 
     /**
-     * Metodo per restituire l'username.
+     * Metodo per restituire l'username dell'account.
      * @return L'username dell'account.
      */
     public String getUsername() {
@@ -78,7 +78,7 @@ public class Utente {
     }
 
     /**
-     * Metodo per restituire l'email.
+     * Metodo per restituire l'email dell'account.
      * @return L'email dell'account.
      */
     public String getEmail() {
@@ -94,7 +94,7 @@ public class Utente {
     }
 
     /**
-     * Metodo per restituire la password.
+     * Metodo per restituire la password dell'account.
      * @return La password dell'account.
      */
     public String getPassword() {

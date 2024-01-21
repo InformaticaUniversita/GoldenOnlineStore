@@ -3,9 +3,9 @@ package model;
 import java.util.Objects;
 
 /**
- * la classe Categoria rappresenta un oggetto categoria con informazioni come
+ * La classe Categoria rappresenta un oggetto categoria con informazioni come
  * nome e descrizione.
- * Ogni oggetto Categoria può essere identificato da un codice univoco.
+ * Ogni oggetto categoria può essere identificato da un codice univoco.
  */
 public class Categoria {
     private int id;
@@ -13,8 +13,8 @@ public class Categoria {
     private String descrizione;
 
     /**
-     * Metodo per restituire una stringa rappresentante l'oggetto Categoria.
-     * @return Una stringa che contiene l'identificatore e il nome della categoria.
+     * Metodo per restituire una stringa rappresentante l'oggetto categoria.
+     * @return Una stringa che contiene l'id e il nome della categoria.
      */
     @Override
     public String toString() {
@@ -38,7 +38,7 @@ public class Categoria {
     }
 
     /**
-     * Metodo per restituire un valore hash per l'oggetto Categoria.
+     * Metodo per restituire un valore hash per l'oggetto categoria.
      * @return Un valore hash basato sull'identificatore e il nome della categoria.
      */
     @Override
@@ -48,24 +48,24 @@ public class Categoria {
 
 
     /**
-     * Costruttore vuoto per un oggetto Categoria.
-     * Viene utilizzato per creare un'istanza di Categoria senza
+     * Costruttore vuoto per un oggetto categoria.
+     * Viene utilizzato per creare un'istanza di categoria senza
      * specificare valori iniziali.
      */
     public Categoria() {
     }
 
     /**
-     * Metodo per restituire l'identidicatore.
-     * @return L'identificatore della categoria.
+     * Metodo per restituire l'id della categoria.
+     * @return L'id della categoria.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Metodo per modificare l'identificatore di una categoria.
-     * @param id L'identificatore di una categoria.
+     * Metodo per modificare l'id di una categoria.
+     * @param id L'id di una categoria.
      */
     public void setId(int id) {
         this.id = id;
