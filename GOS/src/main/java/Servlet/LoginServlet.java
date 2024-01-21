@@ -29,7 +29,10 @@ public class LoginServlet extends HttpServlet {
             utente = utenteDAO.doRetrieveByUsernamePassword(username,password);
         }
         if(utente == null){
-            throw new MyServletException("Username e/o password non validi.");
+            String messaggio = "Username e/o password non validi!";
+            RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/Messaggio.jsp");
+            request.getSession().setAttribute("messaggio", messaggio);
+            requestDispatcher.forward(request,response);
         }
         request.getSession().setAttribute("utente",utente);
 

@@ -58,7 +58,7 @@ public class AdminCategoriaServlet extends HttpServlet {
             }
             request.setAttribute("categoria", categoria);
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/amministrazionecategoria.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/AggiuntaCategoria.jsp");
         requestDispatcher.forward(request,response);
     }
 
