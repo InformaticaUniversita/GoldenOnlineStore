@@ -33,7 +33,7 @@ public class HomeServlet extends HttpServlet {
         List<Prodotto> prodotti= prodottoDao.doRetrieveAll(0,10);
         request.setAttribute("Prodotti",prodotti);
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/Index.jsp");
         requestDispatcher.forward(request,response);
     }
 }

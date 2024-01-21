@@ -69,7 +69,7 @@ public class GestoreProdottoServlet extends HttpServlet {
                 request.setAttribute("prodotto", prodotto);
             }
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/adminprodotto.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/AdminProdotto.jsp");
         requestDispatcher.forward(request,response);
     }
 }

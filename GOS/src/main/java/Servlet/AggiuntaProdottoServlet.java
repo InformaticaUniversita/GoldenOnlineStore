@@ -60,7 +60,7 @@ public class AggiuntaProdottoServlet extends HttpServlet {
             request.setAttribute("notifica", "prodotto aggiunto con successo");
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/aggiuntaprodotto.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/AggiuntaProdotto.jsp");
         requestDispatcher.forward(request,response);
     }
 }
