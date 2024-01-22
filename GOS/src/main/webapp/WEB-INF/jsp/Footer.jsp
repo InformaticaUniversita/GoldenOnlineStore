@@ -4,6 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype HTML>
 <html lang="en">
+<body style="background-color: #FFE4C4;">
 <head>
     <title>Golden Online Store</title>
     <head>
@@ -134,3 +135,4 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+</body>

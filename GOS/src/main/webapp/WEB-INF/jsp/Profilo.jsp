@@ -24,6 +24,20 @@
     <input type="text" name="username"value="${utente.username}">
     <input type="submit" value="Modifica dati">
   </form>
+  <hr>
+  <button type="submit" style="background-color: red; color: white" onclick="confermaEliminazione()">Cancella il profilo</button>
+  <script>
+    function confermaEliminazione(){
+      var conferma = confirm("Eliminare l'account? Sei sicuro?");
+      if(conferma){
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "CancellazioneProfilo?username=${utente.username}");
+        document.body.appendChild(form);
+        form.submit();
+      }
+    }
+  </script>
   <%@ include file="Footer.jsp" %>
 </section>
 </body>

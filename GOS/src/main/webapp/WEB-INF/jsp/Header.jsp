@@ -22,16 +22,16 @@
 
     <link href="css/bare.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="background-color: #FFE4C4">
 <nav><!-- use fx attribute for fixed positioning -->
     <label>
         <ul>
             <div>
-                <a href="Home"><img src="img/logo.png" style="width: 50px" height="50px"></a>
+                <a href="Home"><img src="img/logoSito.png" style="width: auto" height="50px"></a>
             </div>
             <!-- Caricamento delle varie categorie di prodotti all'interno dell'header della home-->
             <li>
-                <a>Action Figure</a>
+                <p style="margin-left: 30px">Action Figure</p>
                 <menu>
                     <c:forEach items="${categorie1}" var="categorie1">
                         <menuitem>
@@ -42,7 +42,7 @@
                 </menu>
             </li>
             <li>
-                <a>Giochi di carte</a>
+                <p style="margin-left: 30px">Giochi di carte</p>
                 <menu>
                     <c:forEach items="${categorie2}" var="categorie2">
                         <menuitem>
@@ -54,7 +54,7 @@
             </li>
             </li>
             <li>
-                <a>Fumetti</a>
+                <p style="margin-left: 30px">Fumetti</p>
                 <menu>
                     <c:forEach items="${categorie3}" var="categorie3">
                         <menuitem>
@@ -69,7 +69,7 @@
                 <c:choose>
                     <c:when test="${utente == null && amministratore == null}">
                         <!-- In caso l'utente non sia loggato verrà data la possibilità di effettuare il login mediante un menù a tendina-->
-                        <a> <img src="img/logoLogin.jpeg" style="width: 50px" height="50px"> </a>
+                        <a> <img src="img/profilo.png" style="width: 50px" height="50px"> </a>
                         <menu>
                             <menuitem>
                                 <card>
@@ -97,7 +97,7 @@
 
                     <c:otherwise>
                         <!-- In caso l'utente sia loggato avrà la possibilità di controllare il proprio profilo o la pagina dei propri ordini -->
-                        <a> <img src="img/logoLogin.jpeg" style="width: 50px" height="50px"> </a>
+                        <a> <img src="img/profilo.png" style="width: 50px" height="50px"> </a>
                         <menu>
                             <c:choose>
                                 <c:when test="${utente != null}">
@@ -112,7 +112,7 @@
                                     </menuitem>
                                 </c:when>
                                 <c:otherwise>
-                                    <menuitem><a href="AggiuntaProdotto">Aggiungi prodotto</a> </menuitem>
+                                    <menuitem><a href="AggiuntaProdottoForm">Aggiungi prodotto</a> </menuitem>
                                     <menuitem>
                                         <card>
                                             <form action="Logout">

@@ -5,32 +5,23 @@
     <jsp:param name="pageTitle" value="${operazione}prodotto"/>
 </jsp:include>
 <section>
-    <h1>${operazione} prodotto</h1>
-    <h5>${notifica}</h5>
+    <h1>Aggiunta prodotto</h1>
+    <h5 style="color: red">${notifica}</h5>
     <c:if test="${param.rimuovi == null}">
         <form action="AggiuntaProdotto" method="post">
-            <input type="hidden" name="id" value="${prodotto.id}">
-            <label>Categorie</label>
-            <select name="addCategoria">
-                <c:forEach items="${categorie}" var="categoria" >
-
-                    <option value="${categoria.id}">${categoria.nome}</option>
-                </c:forEach>
-            </select>
+            <input type="hidden" name="id" value="">
+            <label>Categoria</label>
+            <input type="text" name="categoria" value="">
             <br>
-            <label>Id</label>
-            <input type="text" name="idStr" value="${prodotto.id}">
             <label>Nome</label>
-            <input type="text" name="nome" value="${prodotto.nome}">
+            <input type="text" name="nome" value="">
             <label>Descrizione</label>
-            <textarea name ="descrizione">${prodotto.descrizione}</textarea>
+            <textarea name ="descrizione"></textarea>
             <label>Prezzo</label>
-            <input type="number" name="prezzo" value="${prodotto.prezzo}">
+            <input type="number" name="prezzo" value="">
             <label>Marca</label>
-            <textarea name="marca">${prodotto.categoria}</textarea>
-            <label>Immagine</label>
-            <h5>Upload</h5>
-            <input type="submit" value="${operazione}">
+            <textarea name="marca"></textarea>
+            <input type="submit" value="Aggiungi prodotto">
         </form>
     </c:if>
 </section>

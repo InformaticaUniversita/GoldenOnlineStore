@@ -13,7 +13,8 @@
     <jsp:param name="pageTitle" value="Home"/>
 </jsp:include>
 <meta charset="UTF-8">
-<section>
+<hr>
+<section style="background-color: #FFE4C4">
     <link href="${pageContext.request.contextPath}/css/animate.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/bare.min.css" type="text/css">
@@ -80,4 +81,5 @@
         setTimeout(showSlides, 4000); // Change image every 2 seconds
     }
 </script>
+<hr>
 <%@include file="Footer.jsp"%>

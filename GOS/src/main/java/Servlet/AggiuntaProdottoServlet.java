@@ -25,37 +25,35 @@ public class AggiuntaProdottoServlet extends HttpServlet {
             throw new MyServletException("Utente non autorizzato");
 
         }
-        String idStr = request.getParameter("idStr");
-        if (!(idStr!= null && idStr.length() >= 3 && idStr.length()<=10 && idStr.matches("^[0-9]+$"))) {
-            throw new MyServletException("Id non valido.");
-        }
         String nome = request.getParameter("nome");
-        if (!(nome.matches("([ a-zA-Z]{3,32})"))) {
-            throw new MyServletException("Nome non valido.");
+        if (!(nome.matches("([ a-zA-Z0-9.!@#$%^&*()_-]{3,32})"))) {
+            request.setAttribute("notifica", "Nome non valida!");
+            request.getRequestDispatcher("WEB-INF/jsp/AggiuntaProdotto.jsp").forward(request, response);
+            return;
         }
         String descrizione = request.getParameter("descrizione");
-        if (!(descrizione != null && descrizione.trim().length() > 0 && descrizione.trim().length()<=128 && descrizione.matches("[ a-zA-Z]+$"))) {
-            throw new MyServletException("Descrizione non valida.");
+        if (!(descrizione != null && descrizione.trim().length() > 0 && descrizione.trim().length()<=128 && descrizione.matches("[ a-zA-Z0-9.!@#$%^&*()_-]+$"))) {
+            request.setAttribute("notifica", "Descrizione non valida!");
+            request.getRequestDispatcher("WEB-INF/jsp/AggiuntaProdotto.jsp").forward(request, response);
+            return;
         }
         String marca = request.getParameter("marca");
-        if (!(marca != null && marca.trim().length() > 3 && marca.trim().length()<=32 && marca.matches("[ a-zA-Z]+$"))) {
-            throw new MyServletException("Marca non valida.");
+        if (!(marca != null && marca.trim().length() > 3 && marca.trim().length()<=32 && marca.matches("[ a-zA-Z0-9.!@#$%^&*()_-]+$"))) {
+            request.setAttribute("notifica", "Marca non valida!");
+            request.getRequestDispatcher("WEB-INF/jsp/AggiuntaProdotto.jsp").forward(request, response);
+            return;
         }
         String prezzo = request.getParameter("prezzo");
 
-        String categoria = request.getParameter("addCategoria");
+        String categoria = request.getParameter("categoria");
         int idCategoria= Integer.parseInt(categoria);
-        System.out.println(categoria);
         if (nome != null && descrizione != null && marca != null && prezzo != null && categoria != null) {
-            System.out.println(nome);
             prodotto = new Prodotto();
             prodotto.setNome(nome);
             prodotto.setDescrizione(descrizione);
             prodotto.setMarca(marca);
             prodotto.setPrezzo(Float.parseFloat(prezzo));
-            int id=Integer.parseInt(idStr);
-            prodotto.setId(id);
-            prodotto.setCategoria(categoria);
+            prodotto.setCategoria(Integer.parseInt(categoria));
             prodottoDAO.doSave(prodotto, idCategoria);
             request.setAttribute("notifica", "prodotto aggiunto con successo");
         }
