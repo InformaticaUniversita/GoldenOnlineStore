@@ -136,4 +136,11 @@ public class Carrello {
     public float getPrezzoTot(){
         return (float) prodotti.values().stream().mapToDouble(p->p.getPrezzoTot()).sum();
     }
+
+    /**
+     * Metodo per eliminare tutti i prodotti del carrello.
+     */
+    public void svuotaCarrello() {
+        prodotti.clear();
+    }
 }

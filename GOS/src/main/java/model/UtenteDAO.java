@@ -187,4 +187,23 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Metodo che elimina un account di un utente dal database utilizzando l'username specificato.
+     *
+     * @param username L'username dell'utente da eliminare.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'eliminazione del prodotto dal database.
+     */
+    public void doDelete(String username){
+        try(Connection con = ConnectionPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("DELETE FROM cliente WHERE username=?");
+            ps.setString(1, username);
+            if(ps.executeUpdate() != 1){
+                throw new RuntimeException("DELETE error .");
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }
