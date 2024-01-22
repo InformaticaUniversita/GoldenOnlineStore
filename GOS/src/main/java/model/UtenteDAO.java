@@ -45,6 +45,54 @@ public class UtenteDAO {
     }
 
     /**
+     * Metodo che recupera un utente dal database basato sull'email specificata.
+     *
+     * @param email L'email dell'utente da recuperare.
+     * @return Un utente corrispondente all'email specificato, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
+    public Utente doRetrieveByEmail(String email){
+        try(Connection con = ConnectionPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome FROM cliente WHERE email =?");
+            ps.setString(1,email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Utente p = new Utente();
+                p.setUsername(rs.getString(1));
+                p.setEmail(rs.getString(2));
+                p.setPassword(rs.getString(3));
+                p.setNome(rs.getString(4));
+                p.setCognome(rs.getString(5));
+                return p;
+            }
+            return null;
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doUpdateCredenziali(Utente utente, String username) {
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement ps = con.prepareStatement("UPDATE cliente SET email=?, password=? WHERE username=?")) {
+
+            ps.setString(1, utente.getEmail());
+            ps.setString(2, utente.getPassword());
+            ps.setString(3, utente.getUsername());
+
+            int result = ps.executeUpdate();
+
+            if (result != 1) {
+                // Se l'aggiornamento non ha avuto successo, puoi gestire l'errore qui.
+                throw new RuntimeException("Failed to update user credentials");
+            }
+
+        } catch (SQLException e) {
+            // Puoi loggare l'eccezione o fornire informazioni più dettagliate sull'errore.
+            throw new RuntimeException("Error updating user credentials", e);
+        }
+    }
+
+    /**
      * Metodo che salva un nuovo utente nel database.
      *
      * @param utente L'utente da salvare nel database.

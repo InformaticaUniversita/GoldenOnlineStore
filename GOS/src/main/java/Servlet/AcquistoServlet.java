@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -106,10 +106,12 @@ public class AcquistoServlet extends HttpServlet {
 
         Ordine o = new Ordine();
         o.setCliente(u.getUsername());
-        Date dataodierna = new Date(System.currentTimeMillis());
+        LocalDate currentDate = LocalDate.now();
+        Date dataodierna = Date.valueOf(currentDate);
         o.setDataOrdine(dataodierna);
-        dataodierna.setTime(dataodierna.getDay()+7);
-        o.setDataSpedizione(dataodierna);
+        LocalDate afterDate = currentDate.plusDays(7);
+        Date dataSpedizione = Date.valueOf(afterDate);
+        o.setDataSpedizione(dataSpedizione);
         o.setPrezzoTotale(carrello.getPrezzoTot());
         OrdineDAO ordineDAO = new OrdineDAO();
         int id = ordineDAO.doSave(o);
@@ -124,6 +126,7 @@ public class AcquistoServlet extends HttpServlet {
         List<Carrello.IstanzaProdotto> pq = carrello.getProdottiArray();
         LineaOrdineDAO lineaOrdineDAO = new LineaOrdineDAO();
         for(Carrello.IstanzaProdotto p:pq){
+            System.out.println(id);
             l.setIdOrdine(id);
             l.setIdProdotto(p.getProdotto().getId());
             l.setQuantità(p.getQuantità());
@@ -132,7 +135,10 @@ public class AcquistoServlet extends HttpServlet {
             carrello.remove(p.getProdotto().getId());
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Passo2Pagamento.jsp");
+        String messaggio = "Pagamento andato a buon fine!";
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Messaggio.jsp");
+        request.getSession().setAttribute("messaggio", messaggio);
         requestDispatcher.forward(request,response);
     }
 

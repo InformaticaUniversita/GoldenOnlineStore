@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
         else
             request.getSession().removeAttribute("amministratore");
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/Index.jsp");
         requestDispatcher.forward(request,response);
     }
 }

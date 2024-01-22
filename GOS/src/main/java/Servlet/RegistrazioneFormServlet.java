@@ -15,7 +15,7 @@ public class RegistrazioneFormServlet extends HttpServlet {
         if (request.getSession().getAttribute("utente") != null) {
             throw new MyServletException("Utente loggato");
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp");
         requestDispatcher.forward(request, response);
     }
 
