@@ -50,13 +50,13 @@
             <div class="row row-cols-2">
                 <c:forEach items="${prodotti}" var="prodotto">
                     <div class="col">
-                        <div class="card" style="margin: 0 auto; float: none; margin-bottom: 10px; width: 300px">
+                        <div class="card" style="margin: 0 auto; float: none; margin-bottom: 10px; width: 300px; height: auto; max-width: 100%;">
                             <img class="card-img-top" src="img/products/prodotto${prodotto.id}.jpeg" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${prodotto.nome}</h4>
                                 <p class="card-text">${prodotto.descrizione}</p>
                                 <p class="card-text">Prezzo:${prodotto.prezzo}€</p>
-                                <a href="Prodotto?id=${prodotto.id}" class="btn btn-primary">Visualizza</a>
+                                <a href="Prodotto?id=${prodotto.id}" class="btn btn-primary" style="background-color: crimson; color: white;">Visualizza</a>
                             </div>
                         </div>
                     </div>
