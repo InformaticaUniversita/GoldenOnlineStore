@@ -23,11 +23,11 @@ public class ModificaDatiServlet extends HttpServlet {
         Utente u = utenteDAO.doRetrieveByUsername(username1);
         if (!(username1 != null && username1.matches("([0-9a-zA-Z]{6,30})"))) {
             request.setAttribute("username", "Username non valido!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         } else if (u != null) {
             request.setAttribute("username", "Username già usato!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         }
 
@@ -35,14 +35,14 @@ public class ModificaDatiServlet extends HttpServlet {
         if (!(password != null && password.length() >= 8 && !password.toUpperCase().equals(password)
                 && !password.toLowerCase().equals(password) && password.matches(".*[0-9].*"))) {
             request.setAttribute("password", "Password non valida!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         }
 
         String passwordConferma = request.getParameter("passwordConferma");
         if (!password.equals(passwordConferma)) {
             request.setAttribute("confermaPassword", "Le password non corrispondono!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         }
 
@@ -50,11 +50,11 @@ public class ModificaDatiServlet extends HttpServlet {
         Utente u1 = utenteDAO.doRetrieveByEmail(email);
         if (!(email != null && email.matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)"))) {
             request.setAttribute("email", "Email non valida!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         } else if (u1 != null) {
             request.setAttribute("email", "Email già usata!");
-            request.getRequestDispatcher("WEB-INF/jsp/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Profilo.jsp").forward(request, response);
             return;
         }
         Utente utenteAggiornato = new Utente();

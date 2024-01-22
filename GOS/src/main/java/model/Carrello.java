@@ -84,6 +84,7 @@ public class Carrello {
 
     private LinkedHashMap<Integer, IstanzaProdotto> prodotti = new LinkedHashMap<>();
 
+    public Collection<IstanzaProdotto> getProdotti() { return prodotti.values(); }
 
     /**
      * Metodo per restituire tutti i prodotti all'interno del carrello.
