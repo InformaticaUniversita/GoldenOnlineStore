@@ -18,18 +18,18 @@ public class RegistrazioneServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("utente") != null){
             request.setAttribute("errore", "Sei già loggato!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
         String username = request.getParameter("username");
         Utente u = utenteDAO.doRetrieveByUsername(username);
         if (!(username != null && username.matches("([0-9a-zA-Z]{6,30})"))) {
             request.setAttribute("username", "Username non valido!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         } else if (u != null) {
             request.setAttribute("username", "Username già usato!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 
@@ -37,28 +37,28 @@ public class RegistrazioneServlet extends HttpServlet {
         if (!(password != null && password.length() >= 8 && !password.toUpperCase().equals(password)
                 && !password.toLowerCase().equals(password) && password.matches(".*[0-9].*"))) {
             request.setAttribute("password", "Password non valida!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 
         String passwordConferma = request.getParameter("passwordConferma");
         if (!password.equals(passwordConferma)) {
             request.setAttribute("confermaPassword", "Le password non corrispondono!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 
         String nome = request.getParameter("nome");
         if (!(nome != null && nome.trim().length() > 0 && nome.matches("([a-zA-Z]{0,30})"))) {
             request.setAttribute("nome", "Nome non valido!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 
         String cognome = request.getParameter("cognome");
         if (!(cognome != null && cognome.trim().length() > 0 && cognome.matches("([ a-zA-Z]{0,30})"))) {
             request.setAttribute("cognome", "Cognome non valido!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 
@@ -66,11 +66,11 @@ public class RegistrazioneServlet extends HttpServlet {
         Utente u1 = utenteDAO.doRetrieveByEmail(email);
         if (!(email != null && email.matches("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)"))) {
             request.setAttribute("email", "Email non valida!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         } else if (u1 != null) {
             request.setAttribute("email", "Email già usata!");
-            request.getRequestDispatcher("WEB-INF/jsp/registrazione.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp").forward(request, response);
             return;
         }
 

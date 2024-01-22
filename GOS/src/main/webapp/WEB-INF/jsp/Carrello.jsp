@@ -43,6 +43,11 @@
                     <input type="submit" value="Completa acquisto">
                 </form>
             </div>
+            <div col="2/3">
+                <form action="SvuotaCarrello" method = post>
+                    <input type="submit" value="Svuota Carrello">
+                </form>
+            </div>
         </grid>
     </section>
 </c:if>

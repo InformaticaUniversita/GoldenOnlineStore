@@ -71,7 +71,7 @@ public class ProdottoDAO {
      */
     public Prodotto doRetrieveById(int id){
         try(Connection con =ConnectionPool.getConnection()){
-            PreparedStatement ps=con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo FROM prodotto WHERE id=?");
+            PreparedStatement ps=con.prepareStatement("SELECT prodotto.id,prodotto.nome,prodotto.descrizione,prodotto.marca,prodotto.prezzo, prodotto.categoria FROM prodotto WHERE id=?");
             ps.setInt(1,id);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
@@ -81,6 +81,7 @@ public class ProdottoDAO {
                 P.setDescrizione(rs.getString(3));
                 P.setMarca((rs.getString(4)));
                 P.setPrezzo(rs.getFloat(5));
+                P.setCategoria(rs.getInt(6));
                 return P;
             }
             return null;
@@ -217,13 +218,12 @@ public class ProdottoDAO {
      */
     public void doSave(Prodotto prodotto, int idCategoria){
         try(Connection con = ConnectionPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("INSERT  INTO prodotto(nome, descrizione, marca, prezzo, categoria) VALUES(?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT  INTO prodotto(nome, descrizione, marca, prezzo, categoria) VALUES(?,?,?,?,?)");
             ps.setString(1,prodotto.getNome());
             ps.setString(2,prodotto.getDescrizione());
-            ps.setInt(3,prodotto.getId());
-            ps.setString(4,prodotto.getMarca());
-            ps.setFloat(5,prodotto.getPrezzo());
-            ps.setInt(6,idCategoria);
+            ps.setString(3,prodotto.getMarca());
+            ps.setFloat(4,prodotto.getPrezzo());
+            ps.setInt(5,idCategoria);
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("INSERT error,");
             }
@@ -236,18 +236,19 @@ public class ProdottoDAO {
      * Metodo che aggiorna le informazioni di un prodotto esistente nel database con i nuovi valori specificati.
      *
      * @param prodotto Il prodotto con le nuove informazioni.
-     * @param idCategoria L'id della nuova categoria a cui appartiene il prodotto.
+     * @param id L'id del prodotto da modificare.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'aggiornamento delle informazioni del prodotto nel database.
      */
-    public void doUpdate(Prodotto prodotto,int idCategoria){
+    public void doUpdate(Prodotto prodotto,int id){
         try(Connection con = ConnectionPool.getConnection()){
-            PreparedStatement ps=con.prepareStatement("UPDATE prodotto SET nome=?, descrizione=?, marca=?, prezzo=?, categoria=? WHERE id =?");
+            PreparedStatement ps=con.prepareStatement("UPDATE prodotto SET nome=?, descrizione=?, marca=?, prezzo=?, categoria=?, id=? WHERE id =?");
             ps.setString(1,prodotto.getNome());
             ps.setString(2,prodotto.getDescrizione());
             ps.setString(3,prodotto.getMarca());
             ps.setFloat(4,prodotto.getPrezzo());
-            ps.setInt(5,idCategoria);
+            ps.setInt(5,prodotto.getCategoria());
             ps.setInt(6,prodotto.getId());
+            ps.setInt(7,id);
             if (ps.executeUpdate() != 1){
                 throw new RuntimeException("UPDATE error.");
             }
@@ -262,10 +263,10 @@ public class ProdottoDAO {
      * @param id L'id del prodotto da eliminare.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'eliminazione del prodotto dal database.
      */
-    public void doDelete(String id){
+    public void doDelete(int id){
         try(Connection con = ConnectionPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("DELETE FROM prodotto WHERE id=?");
-            ps.setString(1, id);
+            ps.setInt(1, id);
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("UPDATE error .");
             }

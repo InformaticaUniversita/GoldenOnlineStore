@@ -13,7 +13,7 @@ public class Prodotto {
     private String descrizione;
     private float prezzo;
     private String marca;
-    private String categoria;
+    private int categoria;
 
 
     /**
@@ -32,7 +32,7 @@ public class Prodotto {
      * @param marca La marca del prodotto.
      * @param categoria La categoria del prodotto.
      */
-    public Prodotto(int id, String nome, String descrizione, float prezzo, String marca, String categoria) {
+    public Prodotto(int id, String nome, String descrizione, float prezzo, String marca, int categoria) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -159,14 +159,14 @@ public class Prodotto {
      * Metodo per restituire la categoria del prodotto.
      * @return La categoria del prodotto.
      */
-    public String getCategoria() { return categoria;
+    public int getCategoria() { return categoria;
     }
 
     /**
      * Metodo per modificare la categoria del prodotto.
      * @param categoria La categoria del prodotto.
      */
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
