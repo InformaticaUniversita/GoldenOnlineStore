@@ -71,6 +71,14 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Metodo che modifica le credenziali dell'utente nel database utilizzando l'username
+     * come criterio di ricerca.
+     *
+     * @param utente L'utente con le credenziali aggiornate.
+     * @param username l'username da utilizzare come criterio di ricerca.
+     * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di recupero.
+     */
     public void doUpdateCredenziali(Utente utente, String username) {
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement ps = con.prepareStatement("UPDATE cliente SET email=?, password=? WHERE username=?")) {
