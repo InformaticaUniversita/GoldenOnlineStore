@@ -14,7 +14,7 @@ public class ConnectionPool {
 
     private static List<Connection> freeDbConnections;
     private static final String username = "root";
-    private static final String password = "root";
+    private static final String password = "Totobitto.98";
     private static Connection newConnection;
 
     /**

@@ -81,11 +81,12 @@ public class UtenteDAO {
      */
     public void doUpdateCredenziali(Utente utente, String username) {
         try (Connection con = ConnectionPool.getConnection();
-             PreparedStatement ps = con.prepareStatement("UPDATE cliente SET email=?, password=? WHERE username=?")) {
+             PreparedStatement ps = con.prepareStatement("UPDATE cliente SET email=?, password=?, username=? WHERE username=?")) {
 
             ps.setString(1, utente.getEmail());
             ps.setString(2, utente.getPassword());
-            ps.setString(3, utente.getUsername());
+            ps.setString(3,utente.getUsername());
+            ps.setString(4, username);
 
             int result = ps.executeUpdate();
 
