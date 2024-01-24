@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/CategoriaActionFigure")
+@WebServlet("/Categoria")
 public class CategoriaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
     }
@@ -23,9 +23,11 @@ public class CategoriaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
         @SuppressWarnings("unchecked")
 
-        List<Categoria> categorie= (List<Categoria>) getServletContext().getAttribute("categorie1");
-        int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("categoria",categorie.stream().filter(c -> c.getId() == id).findAny().get());
+
+        int id=Integer.parseInt(request.getParameter("id"));
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        Categoria categoria = categoriaDAO.doRetrieveById(id);
+        request.setAttribute("categoria", categoria);
         String pagstr = request.getParameter("pag");
         int pag = pagstr == null ? 1 : Integer.parseInt(pagstr);
         request.setAttribute("pag", pag);
