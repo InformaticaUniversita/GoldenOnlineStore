@@ -17,11 +17,19 @@
                     <a href="Prodotto?id=${pq.prodotto.id}">${pq.prodotto.nome}</a>
                 </h3>
                 <p>${pq.prodotto.descrizione}</p>
-                <h5>Quantità:${pq.quantità}. Prezzo Unit:${pq.prodotto.prezzo}€, Prezzo tot.:${pq.prezzoTot}€</h5>
+                <h5>Quantità:${pq.quantità}</h5>
+                <h5>Prezzo Unitario:${pq.prodotto.prezzo}€</h5>
+                <h5>Prezzo totale:${pq.prezzoTot}€</h5>
                 <form action="Carrello" method="post">
                     <input type="hidden" name="prodId" value="${pq.prodotto.id}">
                     <input type="hidden" name="setNum" value="0">
                     <input type="submit" value="Rimuovi">
+                </form>
+                <form action="Carrello" method="post">
+                    <input type="hidden" name="prodId" value="${pq.prodotto.id}">
+                    <input type="hidden" name="operazione" value="modificaQuantita">
+                    <input type="number" name="nuovaQuantita" value="${pq.quantità}">
+                    <input type="submit" value="Modifica Quantità">
                 </form>
             </div>
         </c:forEach>
@@ -39,12 +47,13 @@
                 <h2>Totale:${carrello.prezzoTot}</h2>
             </div>
             <div col="1/3">
-                <form action="AcquistoFormServlet" method = post>
+                <form action="Pagamento" method = get>
                     <input type="submit" value="Completa acquisto">
                 </form>
             </div>
             <div col="2/3">
-                <form action="SvuotaCarrello" method = post>
+                <form action="Carrello" method = post>
+                    <input type="hidden" name="operazione" value="svuotaCarrello">
                     <input type="submit" value="Svuota Carrello">
                 </form>
             </div>

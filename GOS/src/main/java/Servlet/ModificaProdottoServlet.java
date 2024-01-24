@@ -70,6 +70,14 @@ public class ModificaProdottoServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        Prodotto prodotto = new Prodotto();
+        ProdottoDAO prodottoDAO = new ProdottoDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        prodotto = prodottoDAO.doRetrieveById(id);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/ModificaProdotto.jsp");
+        request.getSession().setAttribute("prodotto", prodotto);
+        request.getSession().setAttribute("categoria", prodotto.getCategoria());
+        requestDispatcher.forward(request, response);
     }
 }

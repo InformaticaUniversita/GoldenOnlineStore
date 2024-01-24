@@ -35,7 +35,7 @@
                 <menu>
                     <c:forEach items="${categorie1}" var="categorie1">
                         <menuitem>
-                            <a href="CategoriaActionFigure?id=<c:out value="${categorie1.id}"/>">
+                            <a href="Categoria?id=<c:out value="${categorie1.id}"/>">
                                 <c:out value="${categorie1.nome}" /></a>
                         </menuitem>
                     </c:forEach>
@@ -46,7 +46,7 @@
                 <menu>
                     <c:forEach items="${categorie2}" var="categorie2">
                         <menuitem>
-                            <a href="CategoriaGiochiDiCarte?id=<c:out value="${categorie2.id}"/>">
+                            <a href="Categoria?id=<c:out value="${categorie2.id}"/>">
                                 <c:out value="${categorie2.nome}" /></a>
                         </menuitem>
                     </c:forEach>
@@ -58,7 +58,7 @@
                 <menu>
                     <c:forEach items="${categorie3}" var="categorie3">
                         <menuitem>
-                            <a href="CategoriaFumetti?id=<c:out value="${categorie3.id}"/>"><c:out
+                            <a href="Categoria?id=<c:out value="${categorie3.id}"/>"><c:out
                                     value="${categorie3.nome}" /></a>
                         </menuitem>
                     </c:forEach>
@@ -80,7 +80,11 @@
                                     </form>
                                 </card>
                             </menuitem>
-                            <menuitem><a href="RegistrazioneForm">Registrazione</a> </menuitem>
+                            <menuitem>
+                                <form action="Registrazione" method="post">
+                                    <input type="submit" value="Registrazione">
+                                </form>
+                            </menuitem>
                             <menuitem>
                                 <card>
                                     <form action="LoginAmministratoreServlet" method="post">

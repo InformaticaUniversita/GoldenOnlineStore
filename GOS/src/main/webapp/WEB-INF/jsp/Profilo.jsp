@@ -8,36 +8,21 @@
 <body>
 <section>
   <hr>
-  <form action="ModificaDati" method="get">
+  <form action="ModificaDati" method="post">
     <h1>Bentornato ${utente.nome}</h1>
     <label>Nome</label>
-    <input type="text" name="nome" value="${utente.nome}" readonly>
+    <p>${utente.nome}</p>
     <label>Cognome</label>
-    <input type="text" name ="cognome"value="${utente.cognome}" readonly>
+    <p>${utente.cognome}</p>
     <label>Email</label>
-    <input type="text" name="email"value="${utente.email}">
+    <p>${utente.email}</p>
     <label>Password</label>
-    <input type="password" name="password"value="${utente.password}">
-    <label>Conferma Nuova Password</label>
-    <input type="password" name="passwordConferma"value="">
+    <p>${utente.password}</p>
     <label>Username</label>
-    <input type="text" name="username"value="${utente.username}">
+    <p>${utente.username}</p>
     <input type="submit" value="Modifica dati">
   </form>
   <hr>
-  <button type="submit" style="background-color: red; color: white" onclick="confermaEliminazione()">Cancella il profilo</button>
-  <script>
-    function confermaEliminazione(){
-      var conferma = confirm("Eliminare l'account? Sei sicuro?");
-      if(conferma){
-        var form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "CancellazioneProfilo?username=${utente.username}");
-        document.body.appendChild(form);
-        form.submit();
-      }
-    }
-  </script>
   <%@ include file="Footer.jsp" %>
 </section>
 </body>

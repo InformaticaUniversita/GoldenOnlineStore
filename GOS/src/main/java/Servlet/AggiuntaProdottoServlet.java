@@ -12,7 +12,8 @@ import java.util.List;
 public class AggiuntaProdottoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/AggiuntaProdotto.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private final ProdottoDAO prodottoDAO = new ProdottoDAO();

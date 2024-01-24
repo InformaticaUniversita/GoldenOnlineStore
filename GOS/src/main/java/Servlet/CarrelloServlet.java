@@ -20,15 +20,16 @@ public class CarrelloServlet extends HttpServlet {
     ProdottoDAO prodottoDAO=new ProdottoDAO();
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         HttpSession session= request.getSession();
-        Carrello carrello=(Carrello) session.getAttribute(("carrello"));
+        Carrello carrello = (Carrello) session.getAttribute(("carrello"));
         if(carrello==null){
             carrello= new Carrello();
             session.setAttribute("carrello", carrello);
         }
+
         String prodIdStr = request.getParameter("prodId");
         if(prodIdStr != null){
             int prodId = Integer.parseInt(prodIdStr);
-            String addNumStr =request.getParameter("addNum");
+            String addNumStr = request.getParameter("addNum");
             if (addNumStr!=null){
                 int addNum=Integer.parseInt(addNumStr);
 
@@ -55,6 +56,18 @@ public class CarrelloServlet extends HttpServlet {
                 }
             }
         }
+        String operazione = request.getParameter("operazione");
+            if(operazione != null){
+                if(operazione.equals("modificaQuantita")){
+                    int nuovaQuantità = Integer.parseInt(request.getParameter("nuovaQuantita"));
+                    int prodId = Integer.parseInt(prodIdStr);
+                    Carrello.IstanzaProdotto prodQuantità = carrello.get(prodId);
+                    prodQuantità.setQuantità(nuovaQuantità);
+            } else if(operazione.equals("svuotaCarrello")){
+                    carrello.svuotaCarrello();
+                }
+        }
+
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("WEB-INF/jsp/Carrello.jsp");
         requestDispatcher.forward(request,response);
     }
