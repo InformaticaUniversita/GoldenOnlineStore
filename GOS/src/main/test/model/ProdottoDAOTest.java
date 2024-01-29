@@ -19,7 +19,7 @@ public class ProdottoDAOTest {
 
 
     @Test
-    public void doSaveDatabaseTest() throws Exception {
+    public void doSaveProdottoDatabaseTest() throws Exception {
 
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
@@ -33,7 +33,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void deleteAccountIntegrationTest(){
+    public void deleteProdottoIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);
@@ -47,7 +47,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void utenteInserimentoIntegrationTest(){
+    public void prodottoInserimentoIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);
@@ -60,7 +60,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void utenteUpdateIntegrationTest(){
+    public void prodottoUpdateIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);

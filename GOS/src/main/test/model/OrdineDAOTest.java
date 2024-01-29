@@ -60,7 +60,7 @@ public class OrdineDAOTest {
     }
 
     @Test
-    public void doSaveDatabaseTest() throws Exception {
+    public void doSaveOrdineDatabaseTest() throws Exception {
 
             // Creazione di un oggetto Ordine fittizio
             Ordine ordine = new Ordine("Spaghettino", dataOrdine, dataSpedizione, 1.0F);
