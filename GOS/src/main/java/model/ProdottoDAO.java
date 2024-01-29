@@ -211,22 +211,26 @@ public class ProdottoDAO {
 
     /**
      * Metodo che salva un nuovo prodotto nel database con le informazioni specificate.
-     *
+     * @return L'id del prodotto salvato nel database.
      * @param prodotto Il prodotto da salvare nel database.
      * @param idCategoria L'id della categoria a cui appartiene il prodotto.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'inserimento del prodotto nel database.
      */
-    public void doSave(Prodotto prodotto, int idCategoria){
+    public int doSave(Prodotto prodotto, int idCategoria){
         try(Connection con = ConnectionPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("INSERT  INTO prodotto(nome, descrizione, marca, prezzo, categoria) VALUES(?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT  INTO prodotto(nome, descrizione, marca, prezzo, categoria) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,prodotto.getNome());
             ps.setString(2,prodotto.getDescrizione());
             ps.setString(3,prodotto.getMarca());
             ps.setFloat(4,prodotto.getPrezzo());
             ps.setInt(5,idCategoria);
             if(ps.executeUpdate() != 1){
-                throw new RuntimeException("INSERT error,");
+                throw new RuntimeException("INSERT error");
             }
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+            return id;
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

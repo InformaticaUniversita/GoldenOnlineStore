@@ -14,13 +14,13 @@ public class LogoutServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("utente")!= null)
             request.getSession().removeAttribute("utente");
         else
             request.getSession().removeAttribute("amministratore");
 
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/Index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Index.jsp");
         requestDispatcher.forward(request,response);
     }
 }
