@@ -102,25 +102,31 @@ public class UtenteDAO {
     }
 
     /**
-     * Metodo che salva un nuovo utente nel database.
-     *
+     * Metodo che salva un nuovo utente nel database e restituisce il suo id.
+     * @return L'id dell'utente appena inserito nel database.
      * @param utente L'utente da salvare nel database.
      * @throws RuntimeException Se si verifica un'eccezione SQLException durante l'operazione di salvataggio.
      */
-    public void doSave(Utente utente){
+    public int doSave(Utente utente){
         try(Connection c = ConnectionPool.getConnection()){
 
-            PreparedStatement ps = c.prepareStatement("INSERT INTO cliente(username, email, password, nome, cognome) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO cliente(username, email, password, nome, cognome) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
             ps.setString(1, utente.getUsername());
             ps.setString(2, utente.getEmail());
             ps.setString(3, utente.getPassword());
             ps.setString(4, utente.getNome());
             ps.setString(5, utente.getCognome());
-            ps.executeUpdate();
-            //if(ps.executeUpdate() != 1)
-            // throw new RuntimeException("INSERT error");
-        } catch (SQLException e){
-            throw new RuntimeException();
+
+            if(ps.executeUpdate() != 1){
+                throw new RuntimeException("INSERT error");
+            }
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+            return id;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
         }
     }
 
@@ -206,4 +212,29 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Metodo che recupera un utente dal database utilizzando l'id dell'utente come criterio di ricerca.
+     * @param id L'id dell'utente da cercare nel database.
+     * @return Un utente corrispondente all'id fornito, o null se non trovato.
+     * @throws RuntimeException Se si verifica un'eccezione di tipo SQLException durante l'accesso al database.
+     */
+    public Utente doRetrieveById(int id){
+        try(Connection con = ConnectionPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT username, email, password, nome, cognome FROM cliente WHERE id =?");
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Utente utente = new Utente();
+                utente.setUsername(rs.getString(1));
+                utente.setEmail(rs.getString(2));
+                utente.setPassword(rs.getString(3));
+                utente.setNome(rs.getString(4));
+                utente.setCognome(rs.getString(5));
+                return utente;
+            }
+            return null;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
