@@ -82,7 +82,7 @@ public class RegistrazioneServlet extends HttpServlet {
         utente.setEmail(email);
         utenteDAO.doSave(utente);
         request.getSession().setAttribute("utente",utente);
-        String messaggio = "Registrazione effettuata con successo!";
+        String messaggio = "Registrazione effettuata con successo! Benvenuto in GoldenOnlineStore!";
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Messaggio.jsp");
         request.getSession().setAttribute("messaggio", messaggio);
@@ -91,6 +91,10 @@ public class RegistrazioneServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        if (request.getSession().getAttribute("utente") != null) {
+            throw new MyServletException("Utente loggato");
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/Registrazione.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

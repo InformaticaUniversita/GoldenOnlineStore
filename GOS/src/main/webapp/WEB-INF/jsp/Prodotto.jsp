@@ -21,7 +21,7 @@
 </div>
 <div col="3/3">
   <c:if test="${amministratore != null}">
-    <form action="ModificaProdottoForm?id=${prodotto.id}" method="post">
+    <form action="ModificaProdotto?id=${prodotto.id}" method="get">
       <input type="hidden" name="idModifica" value="${prodotto.id}">
       <input type="submit" value="modifica">
     </form>
@@ -50,7 +50,6 @@
         <option value="${loop.index}">${loop.index}</option>
       </c:forEach>
     </select>
-
     <input type="hidden" name="prodId" value="${prodotto.id}">
     <input type="submit" value="Aggiungi al carrello">
   </c:if>

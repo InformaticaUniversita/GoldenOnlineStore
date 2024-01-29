@@ -7,6 +7,7 @@ import java.util.Objects;
  * username, email, password, nome e cognome.
  */
 public class Utente {
+    private int id;
     private String username;
     private String email;
     private String password;
@@ -139,5 +140,21 @@ public class Utente {
      */
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    /**
+     * Metodo per restituire l'id del proprietario dell'account.
+     * @return L'id del proprietario dell'account.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Metodo per modificare l'id del proprietario dell'account.
+     * @return L'id del proprietario dell'account.
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

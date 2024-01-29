@@ -17,11 +17,12 @@ import java.util.Locale;
 public class AcquistoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/AcquistoForm.jsp");
+        requestDispatcher.forward(request,response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         if(carrello == null){

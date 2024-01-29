@@ -32,8 +32,7 @@ public class Prodotto {
      * @param marca La marca del prodotto.
      * @param categoria La categoria del prodotto.
      */
-    public Prodotto(int id, String nome, String descrizione, float prezzo, String marca, int categoria) {
-        this.id = id;
+    public Prodotto(String nome, String descrizione, float prezzo, String marca, int categoria) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.prezzo = prezzo;

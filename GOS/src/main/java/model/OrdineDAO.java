@@ -55,18 +55,20 @@ public class OrdineDAO {
      */
     public int doSave (Ordine ordine){
         try (Connection con = ConnectionPool.getConnection()){
+
             PreparedStatement ps = con.prepareStatement("INSERT INTO ordine(cliente, dataordine, dataspedizione, prezzoTotale) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+
             ps.setString(1,ordine.getCliente());
             ps.setDate(2,ordine.getDataOrdine());
             ps.setDate(3,ordine.getDataSpedizione());
             ps.setFloat(4, ordine.getPrezzoTotale());
+
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("INSERT error");
             }
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
             int id = rs.getInt(1);
-            System.out.println(id);
             return id;
         }catch (SQLException e){
             throw new RuntimeException(e);
