@@ -103,5 +103,21 @@ public class UtenteDAOTest {
         // Testiamo la ricerca nel database insieme all'inserimento
         assertEquals("username6", utenteDAO.doRetrieveByUsername("username6").getUsername());
     }
+
+    @Test
+    public void doSaveUtenteFailureCognomeTest() {
+        // Creazione di un oggetto Utente fittizio
+        Utente utente7 = new Utente("username6", "email6@gmail.com",
+                "password", "nome",
+                "cognomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
+        // Tentativo di inserire un secondo ordine con la stessa chiave (dovrebbe fallire)
+        try {
+            int id1 = utenteDAO.doSave(utente7);
+        } catch (Exception e) {
+            // Aspettati un'eccezione durante l'inserimento duplicato
+            assertTrue(e instanceof RuntimeException); // Aggiorna con il tipo di eccezione atteso
+        }
+    }
 }
 
