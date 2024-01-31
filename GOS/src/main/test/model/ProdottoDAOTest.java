@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.mockito.Mockito;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -19,7 +21,7 @@ public class ProdottoDAOTest {
 
 
     @Test
-    public void doSaveDatabaseTest() throws Exception {
+    public void doSaveProdottoDatabaseTest() throws Exception {
 
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
@@ -33,7 +35,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void deleteAccountIntegrationTest(){
+    public void deleteProdottoIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);
@@ -47,7 +49,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void utenteInserimentoIntegrationTest(){
+    public void prodottoInserimentoIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);
@@ -60,7 +62,7 @@ public class ProdottoDAOTest {
     }
 
     @Test
-    public void utenteUpdateIntegrationTest(){
+    public void prodottoUpdateIntegrationTest(){
         // Crea un oggetto Prodotto con dati fittizi
         Prodotto prodotto = new Prodotto("prodotto", "descrizione",
                 123F, "marca", 6);
@@ -77,5 +79,51 @@ public class ProdottoDAOTest {
 
         // Testiamo la ricerca nel database insieme alla modifica dei dati
         assertEquals("prodotto1", prodottoDAO.doRetrieveById(id).getNome());
+    }
+
+    @Test
+    public void doSaveProdottoFailureNomeTest() {
+        // Creazione di un oggetto Prodotto fittizio
+        Prodotto prodotto = new Prodotto("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        , "descrizione", 12.4F, "One Piece", 7);
+
+        // Tentativo di inserire un secondo ordine con la stessa chiave (dovrebbe fallire)
+        try {
+            int id1 = prodottoDAO.doSave(prodotto, 6);
+        } catch (Exception e) {
+            // Aspettati un'eccezione durante l'inserimento duplicato
+            assertTrue(e instanceof RuntimeException); // Aggiorna con il tipo di eccezione atteso
+        }
+    }
+
+    @Test
+    public void doSaveProdottoFailureMarcaTest() {
+        // Creazione di un oggetto Prodotto fittizio
+        Prodotto prodotto = new Prodotto("nome", "descrizione",
+                13.3F, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 7);
+
+        // Tentativo di inserire un secondo ordine con la stessa chiave (dovrebbe fallire)
+        try {
+            int id1 = prodottoDAO.doSave(prodotto, 6);
+        } catch (Exception e) {
+            // Aspettati un'eccezione durante l'inserimento duplicato
+            assertTrue(e instanceof RuntimeException); // Aggiorna con il tipo di eccezione atteso
+        }
+    }
+
+    @Test
+    public void doSaveProdottoFailureDescrizioneTest() {
+        // Creazione di un oggetto Prodotto fittizio
+        Prodotto prodotto = new Prodotto("nome",
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                13.3F, "One piece", 7);
+
+        // Tentativo di inserire un secondo ordine con la stessa chiave (dovrebbe fallire)
+        try {
+            int id1 = prodottoDAO.doSave(prodotto, 6);
+        } catch (Exception e) {
+            // Aspettati un'eccezione durante l'inserimento duplicato
+            assertTrue(e instanceof RuntimeException); // Aggiorna con il tipo di eccezione atteso
+        }
     }
 }

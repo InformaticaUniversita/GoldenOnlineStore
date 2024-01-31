@@ -60,7 +60,7 @@ public class OrdineDAOTest {
     }
 
     @Test
-    public void doSaveDatabaseTest() throws Exception {
+    public void doSaveOrdineDatabaseTest() throws Exception {
 
             // Creazione di un oggetto Ordine fittizio
             Ordine ordine = new Ordine("Spaghettino", dataOrdine, dataSpedizione, 1.0F);
@@ -85,6 +85,18 @@ public class OrdineDAOTest {
         assertEquals(ordineDAO.doRetrieveById(id), null);
     }
 
+    @Test
+    public void doSaveOrdineFailureDataTest() {
+        // Creazione di un oggetto Ordine fittizio
+        Ordine ordine = new Ordine("Spaghettino", null, dataSpedizione, 2.0F);
 
+        // Tentativo di inserire un secondo ordine con la stessa chiave (dovrebbe fallire)
+        try {
+            int id1 = ordineDAO.doSave(ordine);
+        } catch (Exception e) {
+            // Aspettati un'eccezione durante l'inserimento duplicato
+            assertTrue(e instanceof RuntimeException); // Aggiorna con il tipo di eccezione atteso
+        }
+    }
 }
 
